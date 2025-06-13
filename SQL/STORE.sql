@@ -24,9 +24,11 @@ CREATE TABLE casilla (
   X INTEGER,
   Y INTEGER,
   ID_MAPA INTEGER,
-  Z INTEGER NOT NULL,--MEJOR PONERLO 0 < Z < 255
+  Z INTEGER NOT NULL,
   COSTE INTEGER NOT NULL DEFAULT 1,
   APARIENCIA TEXT,
+  CONSTRAINT casilla_chk_1 CHECK (0 <= Z),
+  CONSTRAINT casilla_chk_2 CHECK (Z <= 255),
   constraint claves_c PRIMARY KEY (X,Y,ID_MAPA),
   constraint clave_cm foreign KEY (ID_MAPA) references mapa(ID_MAPA)
 );
@@ -108,7 +110,5 @@ CREATE TABLE agente_habilidad (
 );
 
 INSERT INTO usuarios (id, nombre, dni, status,PASSWORD)
-VALUES (1, 'Luis', '11111111A', 'adm', '33HH66');
+VALUES (1, 'Luis', '11111111A', 'adm', '$2a$10$4uVbYzKNVbiYoBcXzjz/JuKk8slnWcaQICkCb/32iswIdmNBvbrAC');
 
-SELECT * FROM usuario;
-SHOW TABLES;
